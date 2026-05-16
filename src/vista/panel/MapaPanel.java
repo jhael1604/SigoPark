@@ -43,7 +43,7 @@ public class MapaPanel extends JPanel {
         add(buildGrilla(), BorderLayout.CENTER);
     }
 
-    // ── Leyenda ───────────────────────────────────────────────
+    
     private JPanel buildLeyenda() {
         JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT, 16, 0));
         p.setBackground(BG);
@@ -77,7 +77,7 @@ public class MapaPanel extends JPanel {
         return p;
     }
 
-    // ── Grilla ────────────────────────────────────────────────
+    
     public JPanel buildGrilla() {
         EspacioParqueo[][] mapa = service.getMapa();
         int filas = mapa.length;
@@ -86,7 +86,7 @@ public class MapaPanel extends JPanel {
         JPanel contenedor = new JPanel(new BorderLayout(0, 4));
         contenedor.setBackground(BG);
 
-        // Header columnas
+        
         JPanel headerCols = new JPanel(new GridLayout(1, cols + 1, 6, 0));
         headerCols.setBackground(BG);
         headerCols.add(emptyCell());
@@ -95,7 +95,7 @@ public class MapaPanel extends JPanel {
         }
         contenedor.add(headerCols, BorderLayout.NORTH);
 
-        // Filas
+        
         JPanel grid = new JPanel(new GridLayout(filas, cols + 1, 6, 6));
         grid.setBackground(BG);
 
@@ -118,7 +118,7 @@ public class MapaPanel extends JPanel {
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
                 Color bg = colorPorEstado(espacio.getEstado());
-                // Fondo con opacidad reducida
+                
                 g2.setColor(new Color(bg.getRed(), bg.getGreen(), bg.getBlue(), 30));
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 10, 10);
 
@@ -153,7 +153,7 @@ public class MapaPanel extends JPanel {
 
         cell.add(inner);
 
-        // Tooltip
+        
         String tooltip = buildTooltip(espacio);
         cell.setToolTipText(tooltip);
 
@@ -223,7 +223,7 @@ public class MapaPanel extends JPanel {
             e.getEstado() + "</html>";
     }
 
-    /** Fuerza repintado de toda la grilla */
+    
     public void refrescar() {
         removeAll();
         buildUI();

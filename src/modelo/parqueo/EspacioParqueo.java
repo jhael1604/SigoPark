@@ -6,9 +6,9 @@ public class EspacioParqueo {
         LIBRE, OCUPADO, DISCAPACIDAD
     }
 
-    private final String id;       // e.g. "A1", "B3"
-    private final char fila;       // A, B, C
-    private final int columna;     // 1-6
+    private final String id;       
+    private final char fila;       
+    private final int columna;     
     private EstadoEspacio estado;
     private Vehiculo vehiculoActual;
 

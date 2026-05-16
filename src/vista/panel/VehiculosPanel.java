@@ -101,7 +101,6 @@ public class VehiculosPanel extends JPanel {
         tabla.setSelectionForeground(TEXT_WHITE);
         tabla.setFillsViewportHeight(true);
 
-        // Header
         JTableHeader header = tabla.getTableHeader();
         header.setBackground(new Color(30, 41, 59));
         header.setForeground(TEXT_MUTED);
@@ -109,7 +108,7 @@ public class VehiculosPanel extends JPanel {
         header.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, BORDER_CLR));
         header.setReorderingAllowed(false);
 
-        // Renderer badge para columna Estado
+
         tabla.getColumnModel().getColumn(5).setCellRenderer(new BadgeRenderer());
 
         // Anchos
@@ -150,7 +149,6 @@ public class VehiculosPanel extends JPanel {
         cargarDatos(service.buscar(term));
     }
 
-    // ── Badge renderer ────────────────────────────────────────
     private static class BadgeRenderer extends DefaultTableCellRenderer {
         @Override
         public Component getTableCellRendererComponent(

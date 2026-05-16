@@ -112,7 +112,7 @@ public class DashboardFrame extends JFrame {
         userPane.add(btnLogout);
         sidebar.add(userPane);
 
-        // Activar primer ítem
+        
         btnNavActivo = btnMapa;
         setActivo(btnMapa, true);
 

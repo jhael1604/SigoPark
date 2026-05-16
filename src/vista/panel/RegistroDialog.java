@@ -236,11 +236,11 @@ public class RegistroDialog extends JDialog {
         }
     }
 
-    // ── Helpers UI ────────────────────────────────────────────
+    
     private JTextField styledField() {
         JTextField f = new JTextField();
         f.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-        f.setForeground(TEXT_WHI5TE);
+        f.setForeground(TEXT_WHITE);
         f.setBackground(FIELD_BG);
         f.setCaretColor(ACCENT);
         f.setBorder(BorderFactory.createCompoundBorder(

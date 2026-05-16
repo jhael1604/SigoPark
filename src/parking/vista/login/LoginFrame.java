@@ -115,10 +115,10 @@ public class LoginFrame extends JFrame {
         btnClose.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btnClose.addActionListener(e -> System.exit(0));
 
-        // ── Hint credenciales demo ────────────────────────────
+       
 
 
-        // ── Ensamble ──────────────────────────────────────────
+        
         JPanel closePanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
         closePanel.setOpaque(false);
         closePanel.add(btnClose);
@@ -148,7 +148,7 @@ public class LoginFrame extends JFrame {
         txtPassword.addActionListener(e -> intentarLogin());
     }
 
-    // ── Factories ─────────────────────────────────────────────
+   
     private JLabel styledLabel(String text, int size, int style, Color color) {
         JLabel l = new JLabel(text);
         l.setFont(new Font("Segoe UI", style, size));
@@ -172,7 +172,7 @@ public class LoginFrame extends JFrame {
             new EmptyBorder(10, 14, 10, 14)
         ));
         f.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
-        // Placeholder effect
+        
         f.addFocusListener(new FocusAdapter() {
             @Override public void focusGained(FocusEvent e) {
                 f.setBorder(BorderFactory.createCompoundBorder(

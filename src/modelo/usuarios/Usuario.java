@@ -51,7 +51,7 @@ public abstract class Usuario {
         return this.username.equals(username) && this.password.equals(password);
     }
 
-    /** Cada subclase declara sus permisos específicos */
+    
     public abstract boolean tienePermiso(String accion);
 
     @Override
