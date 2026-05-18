@@ -5,6 +5,7 @@ import controlador.ParqueoService;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import controlador.CalcularVolumen;
 
 public class ReportesPanel extends JPanel {
 
@@ -57,9 +58,16 @@ public class ReportesPanel extends JPanel {
 
         for (JPanel c : cards) cardsRow.add(c);
         add(cardsRow, BorderLayout.CENTER);
+        JPanel panelSur = new JPanel();
+        panelSur.setLayout(new BoxLayout(panelSur, BoxLayout.Y_AXIS));
+        panelSur.setBackground(BG);
+        panelSur.add(buildBarraDistribucion());
+        panelSur.add(buildSeccionVolumen());
+        add(panelSur, BorderLayout.SOUTH);
 
-        // Segunda fila: distribución porcentual
-        add(buildBarraDistribucion(), BorderLayout.SOUTH);
+        
+        
+        
     }
 
     private JPanel buildCard(String titulo, String valor, Color accent, Color color1, String icono) {
@@ -169,6 +177,56 @@ public class ReportesPanel extends JPanel {
         wrapper.add(pcts, BorderLayout.SOUTH);
         return wrapper;
     }
+    private JPanel buildSeccionVolumen(){
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBackground(BG);
+        panel.setBorder(new EmptyBorder(20, 0, 0, 0));
+        
+        JLabel titulo = new JLabel("Volumen Total de vehiculo Estacionados");
+        titulo.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        titulo.setForeground(TEXT_WHITE);
+        titulo.setAlignmentX(LEFT_ALIGNMENT);
+        
+        //Calcular volumen total
+        double volumenTotal = CalcularVolumen.calcularVolumenTotal(service.getVehiculosEstacionados());
+        //-------------------------
+        JLabel lblVolumen = new JLabel(String.format("Volumen total ocupado: %.2f m", volumenTotal));
+        lblVolumen.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        lblVolumen.setForeground(new Color(59, 130, 246));
+        lblVolumen.setAlignmentX(LEFT_ALIGNMENT);
+        
+        //Detalle por tipo de vehiculo
+        JLabel lblDetalle = new JLabel("<html><b> Detalle por vehiculo: </b><br>" + detalleVolumenes() + "</html>");
+        lblDetalle.setFont(new Font("Segoe UI", Font.PLAIN,12));
+        lblDetalle.setForeground(TEXT_WHITE);
+        lblDetalle.setAlignmentX(LEFT_ALIGNMENT);
+        
+        
+        
+        panel.add(titulo);
+        panel.add(Box.createVerticalStrut(8));
+        panel.add(lblVolumen);
+        panel.add(Box.createVerticalStrut(6));
+        panel.add(lblDetalle);
+        
+        return panel;
+    }
+    private String detalleVolumenes(){
+        StringBuilder sb = new StringBuilder();
+        for(modelo.parqueo.Vehiculo v : service.getVehiculosEstacionados()){
+            sb.append(".")
+                    .append(v.getPlaca())
+                    .append("(")
+                    .append(v.getTipo().getDescripcion())
+                    .append("):")
+                    .append(CalcularVolumen.getDetalle(v.getTipo()))
+                    .append("<br>");
+            
+        }
+        if(sb.length() == 0) sb.append("No hay vehiculos estacionados");
+        return sb.toString();
+    };
 
     public void refrescar() {
         removeAll();
