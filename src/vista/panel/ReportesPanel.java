@@ -202,9 +202,17 @@ public class ReportesPanel extends JPanel {
         lblDetalle.setForeground(TEXT_WHITE);
         lblDetalle.setAlignmentX(LEFT_ALIGNMENT);
         
+            JLabel lblFormula = new JLabel(
+        "<html>Fórmula: V = ∫₀ᴸ A(x) dx  ≈  Σ (A(xᵢ) + A(xᵢ₊₁))/2 · Δx</html>");
+    lblFormula.setFont(new Font("Segoe UI Emoji", Font.ITALIC, 12));
+    lblFormula.setForeground(TEXT_MUTED);
+    lblFormula.setAlignmentX(LEFT_ALIGNMENT);
+        
         
         
         panel.add(titulo);
+        panel.add(Box.createVerticalStrut(8));
+        panel.add(lblFormula);
         panel.add(Box.createVerticalStrut(8));
         panel.add(lblVolumen);
         panel.add(Box.createVerticalStrut(6));
